@@ -1,0 +1,206 @@
+#==================================================================================================#
+points:
+  key:
+    tags: 
+      1u: true
+    padding: cy
+    footprints:
+        choc:
+          type: choc
+          anchor:
+            rotate: 180
+          nets:
+            from: =column_net
+            to: GND
+          params:
+              keycaps: true
+              reverse: true
+
+  zones:
+    main:
+      rows:
+        bottom:
+        home:
+        top:
+      columns:
+        pinkie:
+          spread: cx
+          rows:
+            bottom:
+              column_net: P15
+            home:
+              column_net: P0
+            top:
+              column_net: P1
+        ring:
+          spread: cx
+          stagger: cy*3/4
+          rows: 
+            bottom:
+              column_net: P14
+            home: 
+              column_net: P16
+            top: 
+              column_net: P10
+        middle:
+          spread: cx
+          stagger: cy/4
+          rows:
+            bottom:
+              column_net: P9
+            home: 
+              column_net: P8
+            top:
+              column_net: P7
+        index:
+          spread: cx
+          stagger: -cy/4
+          row_overrides: 
+            bottom:
+              column_net: P5
+            home: 
+              column_net: P4
+            top: 
+              column_net: P3
+        far:
+          spread: cx
+          stagger: -cy/4
+          row_overrides: 
+            bottom: 
+              column_net: P6
+            home:
+              column_net: P19
+            top: 
+              column_net: P2
+    thumb:
+      anchor:
+        ref: main_far_bottom
+        shift: [-12,-20]
+        rotate: -10
+      rows:
+        main:
+          bind: [0,0,0,0]
+      columns:
+        inner:
+          rows:
+            main:
+              column_net: P18
+        home:
+          rotate: -13
+          stagger: -2.5
+          spread: cx*9/8
+          rows:
+            main:
+              bind: [0,4,0,4]
+              column_net: P19
+        outer:
+          rotate: -13
+          spread: cx*9/8
+          stagger: -2.5
+          rows:
+            main:
+              bind: [0,0,0,1]
+              column_net: P20
+          
+
+#==================================================================================================#
+outlines:
+  exports:
+    raw: 
+      - type: keys
+        side: left
+        size: [1cx , 1cx]
+      - type: rectangle # for controller
+        size: [1.5cx, 64.5]
+        anchor:
+          ref: main_far_bottom
+          shift: [8, -35]
+      - type: rectangle # filler
+        size: [5cx, 1.2cy]
+        anchor:
+          ref: main_ring_bottom
+          shift: [-cx,-1.28cy]
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 2
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+
+
+#==================================================================================================#
+pcbs:
+  main:
+    outlines:
+      main:
+        outline: cutout
+    footprints:
+      promicro:
+        type: promicro
+        anchor:
+          ref: main_far_bottom
+          shift: [22, 10]
+          rotate: -90
+        params:
+          orientation: down
+      pcm12:
+        type: pcm12
+        anchor:
+          ref: main_far_home
+          shift: [-75, -22]
+          rotate: 0
+        nets:
+          from: pos  
+          to: RAW
+        params:
+          reverse: true 
+      via3:
+        type: via
+        anchor: 
+          ref: main_pinkie_bottom
+          shift: [-2,-10]
+        nets: 
+          net: RAW 
+      via4:
+        type: via
+        anchor: 
+          ref: main_pinkie_bottom
+          shift: [-4,-10]
+        nets: 
+          net: pos 
+      via5:
+        type: via
+        anchor: 
+          ref: main_pinkie_bottom
+          shift: [8,-10]
+        nets: 
+          net: GND 
+      via6:
+        type: via
+        anchor: 
+          ref: main_pinkie_bottom
+          shift: [6,-10]
+        nets: 
+          net: RST 
+      b3u1000p:
+        type: b3u1000p
+        nets:
+          r1: RST  
+          r2: GND
+        anchor:
+          ref: main_pinkie_bottom
+          shift: [7, -15]
+          rotate: 0
+        params:
+          reverse: true 
+      bat:
+        type: bat
+        nets: 
+          neg: GND
+        anchor:
+          ref: main_far_bottom
+          shift: [-42 , -0]
+          rotate: 0
