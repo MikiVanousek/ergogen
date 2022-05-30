@@ -39,7 +39,7 @@ points:
           spread: cx
           rows:
             bottom:
-              column_net: P5
+              column_net: P9
             home:
               column_net: P1
             top:
@@ -49,7 +49,7 @@ points:
           stagger: cy*3/4
           rows: 
             bottom:
-              column_net: P6
+              column_net: P8
             home: 
               column_net: P0
             top: 
@@ -69,7 +69,7 @@ points:
           stagger: -cy/4
           row_overrides: 
             bottom:
-              column_net: P8
+              column_net: P6
             home: 
               column_net: P3
             top: 
@@ -79,7 +79,7 @@ points:
           stagger: -cy/4
           row_overrides: 
             bottom: 
-              column_net: P9
+              column_net: P5
             home:
               column_net: P4
             top: 
