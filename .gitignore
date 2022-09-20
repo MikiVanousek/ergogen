@@ -116,7 +116,7 @@ dist
 .pnp.*
 
 # Project specific
-output
+# output
 temp*
 .DS_Store
 *.swp
